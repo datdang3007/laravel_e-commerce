@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Thêm liên kết đến tệp CSS của Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>@yield('title')</title>
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Left Sidebar -->
+        @if(isset($sidebarMenu))
+            @include('components.sidebar-menu', ['menuItems' => $sidebarMenu])
+        @endif
+
+        <div class="flex flex-col w-10/12 h-screen">
+            <!-- Header Partial -->
+            @include('partials.header')
+
+            <!-- Main Content -->
+            <div class="flex-1 overflow-y-auto">
+                <div class="main-content px-4 py-4">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    <!-- Include Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</html>
