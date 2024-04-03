@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('manufacturer_id'); // Thêm cột tham chiếu đến bảng manufacturers
             $table->dateTime('production_date')->nullable(); // Ngày sản xuất (có thể để null)
             $table->string('production_location')->nullable(); // Nơi sản xuất (có thể để null)
+            $table->string('size')->nullable(); // Kích thước (có thể để null)
             $table->timestamps();
             
             // Tạo foreign key constraints

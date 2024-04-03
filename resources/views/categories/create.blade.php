@@ -1,11 +1,13 @@
 @extends('layouts.layout')
 
+@section('title', 'Tạo Danh mục mới')
+
 @section('content')
 <div class="flex justify-center">
     <div class="w-full">
         <div class="bg-white rounded-lg shadow-lg">
             <div class="px-4 py-3 border-b border-gray-200">
-                <h2 class="text-lg font-semibold text-gray-800">Tạo Danh Mục mới</h2>
+                <h2 class="text-lg font-semibold text-gray-800">Tạo Danh mục mới</h2>
             </div>
             <div class="p-4">
                 <form action="{{ route('categories.store') }}" method="POST">

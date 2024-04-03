@@ -5,16 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Manufacturer extends Model
+class Supplier extends Model
 {
     use HasFactory;
-    protected $table = 'manufacturers';
+    
+    protected $table = 'orders';
 
     protected $primaryKey = 'id';
     
     protected $fillable = [
         'name',
-        'address',
-        'website',
+        'email',
+        'phone',
+        // Add other fillable fields here
     ];
+
+    public function imports()
+    {
+        return $this->hasMany(Import::class);
+    }
 }

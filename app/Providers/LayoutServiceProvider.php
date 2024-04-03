@@ -20,10 +20,30 @@ class LayoutServiceProvider extends ServiceProvider
                     ]
                 ],
                 [
+                    'name' => 'Quản lý Nhà cung cấp',
+                    'children' => [
+                        ['name' => 'Danh sách', 'route' => route('suppliers.index')],
+                        ['name' => 'Thêm mới', 'route' => route('suppliers.create')]
+                    ]
+                ],
+                [
                     'name' => 'Quản lý Danh mục',
                     'children' => [
                         ['name' => 'Danh sách', 'route' => route('categories.index')],
                         ['name' => 'Thêm mới', 'route' => route('categories.create')]
+                    ]
+                ],
+                [
+                    'name' => 'Quản lý Sản phẩm',
+                    'children' => [
+                        ['name' => 'Danh sách', 'route' => route('products.index')],
+                        ['name' => 'Thêm mới', 'route' => route('products.create')]
+                    ]
+                ],
+                [
+                    'name' => 'Quản lý Đơn hàng',
+                    'children' => [
+                        ['name' => 'Danh sách', 'route' => route('orders.index')],
                     ]
                 ],
             ];

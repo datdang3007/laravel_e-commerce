@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Manufacturer extends Model
+class ImportStatus extends Model
 {
     use HasFactory;
-    protected $table = 'manufacturers';
+    
+    protected $table = 'import_statuses';
 
     protected $primaryKey = 'id';
-    
-    protected $fillable = [
-        'name',
-        'address',
-        'website',
-    ];
+
+    protected $fillable = ['name'];
 }
