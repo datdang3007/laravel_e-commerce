@@ -9,7 +9,7 @@ class ImportDetail extends Model
 {
     use HasFactory;
     
-    protected $table = 'orders';
+    protected $table = 'import_details';
 
     protected $primaryKey = 'id';
     
@@ -18,7 +18,6 @@ class ImportDetail extends Model
         'product_id',
         'quantity',
         'price',
-        // Add other fillable fields here
     ];
 
     public function import()

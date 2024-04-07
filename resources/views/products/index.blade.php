@@ -18,6 +18,7 @@
                         <tr>
                             <th class="py-2 px-4 bg-gray-200 border border-gray-300">Tên</th>
                             <th class="py-2 px-4 bg-gray-200 border border-gray-300">Mô tả</th>
+                            <th class="py-2 px-4 bg-gray-200 border border-gray-300">Danh mục sản phẩm</th>
                             <th class="py-2 px-4 bg-gray-200 border border-gray-300">Đơn vị</th>
                             <th class="py-2 px-4 bg-gray-200 border border-gray-300">Giá</th>
                             <th class="py-2 px-4 bg-gray-200 border border-gray-300">Số lượng tồn kho</th>
@@ -29,6 +30,7 @@
                         <tr>
                             <td class="py-2 px-4 border border-gray-300">{{ $product->name }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ $product->description }}</td>
+                            <td class="py-2 px-4 border border-gray-300">{{ $product->category->name }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ $product->unit }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ number_format($product->price, 2) }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ $product->stock_quantity }}</td>

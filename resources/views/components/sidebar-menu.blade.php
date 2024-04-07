@@ -1,6 +1,7 @@
 <div class="w-2/12 bg-white shadow-lg h-screen">
-    <div class="flex items-center justify-center ">
-        <img src="{{ asset('images\logo.png') }}" alt="Logo" class="w-full">
+    <div class="bg-blue-500 w-full h-14 flex items-center justify-center text-white gap-2">
+        <i class="fa-solid fa-shop"></i>
+        <span class="text-lg">Super Market</span>
     </div>
     <ul>
         @foreach ($menuItems as $menuItem)
@@ -14,7 +15,12 @@
                         @php
                             $isActive = Request::url() == $child['route']; // Kiểm tra xem URL hiện tại có trùng với URL của mục menu hay không
                         @endphp
-                        <li class="pl-6 {{ $isActive ? 'bg-blue-500' : '' }}"><a href="{{ $child['route'] }}" class="inline-block {{ $isActive ? 'text-white' : 'text-gray-600 hover:text-blue-500' }} py-1 my-1">{{ $child['name'] }}</a></li>
+                        <!-- <li class="hover:text-gray-600 {{ $isActive ? 'text-white' : 'text-gray-600 hover:text-blue-500' }} {{ $isActive ? 'bg-blue-500' : '' }}"> -->
+                        <li>
+                           <div class="w-full h-full pl-6 cursor-pointer {{ $isActive ? 'text-white bg-blue-500' : 'text-gray-600 hover:text-blue-500' }}">
+                                <a href="{{ $child['route'] }}" class="inline-block w-full h-full py-1 my-1">{{ $child['name'] }}</a>
+                           </div>
+                        </li>
                     @endforeach
                 </ul>
             </li>

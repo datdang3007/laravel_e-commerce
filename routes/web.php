@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ImportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,3 +94,16 @@ Route::get('/orders/{id}', [OrderController::class, 'show']) -> name('orders.sho
 // ### API ###
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::put('/orders/{id}', [OrderController::class, 'update'])->name('orders.update');
+
+/* ---------------------------------------- */
+/* -- Imports 
+/* ---------------------------------------- */
+
+// ### Layout ###
+Route::get('/imports', [ImportController::class, 'index'])->name('imports.index');
+Route::get('/imports/create', [ImportController::class, 'create']) -> name('imports.create');
+Route::get('/imports/{id}', [ImportController::class, 'show']) -> name('imports.show');
+
+// ### API ###
+Route::post('/imports', [ImportController::class, 'store'])->name('imports.store');
+Route::put('/imports/{id}', [ImportController::class, 'update'])->name('imports.update');

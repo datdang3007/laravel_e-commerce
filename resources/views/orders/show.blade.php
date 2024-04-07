@@ -6,7 +6,12 @@
 <div class="flex justify-center">
     <div class="w-full">
         <div class="bg-white rounded-lg shadow-lg">
-            <div class="px-4 py-3 border-b border-gray-200">
+            <div class="flex items-center gap-x-4 px-4 py-3 border-b border-gray-200">
+                <a href="{{ route('orders.index') }}" class="text-blue-500">
+                    <button class="w-6 h-6 flex items-center justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full">
+                        <i class="fa-solid fa-arrow-left text-xs"></i>
+                    </button>
+                </a>
                 <h2 class="text-lg font-semibold text-gray-800">Chi tiết Đơn hàng #{{ $order->id }}</h2>
             </div>
             <div class="p-4">

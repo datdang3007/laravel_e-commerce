@@ -27,7 +27,7 @@ class LayoutServiceProvider extends ServiceProvider
                     ]
                 ],
                 [
-                    'name' => 'Quản lý Danh mục',
+                    'name' => 'Quản lý Danh mục sản phẩm',
                     'children' => [
                         ['name' => 'Danh sách', 'route' => route('categories.index')],
                         ['name' => 'Thêm mới', 'route' => route('categories.create')]
@@ -44,6 +44,13 @@ class LayoutServiceProvider extends ServiceProvider
                     'name' => 'Quản lý Đơn hàng',
                     'children' => [
                         ['name' => 'Danh sách', 'route' => route('orders.index')],
+                    ]
+                ],
+                [
+                    'name' => 'Quản lý nhập hàng',
+                    'children' => [
+                        ['name' => 'Danh sách', 'route' => route('imports.index')],
+                        ['name' => 'Thêm mới', 'route' => route('imports.create')]
                     ]
                 ],
             ];

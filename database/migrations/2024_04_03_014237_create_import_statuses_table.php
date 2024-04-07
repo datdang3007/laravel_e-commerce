@@ -18,6 +18,13 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->timestamps();
         });
+
+        DB::table('import_statuses')->insert([
+            ['name' => 'pending'],
+            ['name' => 'processing'],
+            ['name' => 'completed'],
+            ['name' => 'canceled'],
+        ]);
     }
 
     /**

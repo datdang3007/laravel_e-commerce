@@ -30,7 +30,7 @@
                             <td class="py-2 px-4 border border-gray-300">{{ $order->order_items_count }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ $order->status }}</td>
                             <td class="py-2 px-4 border border-gray-300">
-                                <a href="{{ route('orders.show', $order->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded-md">Xem</a>
+                                <a href="{{ route('orders.show', $order->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded-md">Xem chi tiết</a>
                             </td>
                         </tr>
                         @endforeach

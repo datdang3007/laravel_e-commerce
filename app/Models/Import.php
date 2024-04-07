@@ -9,12 +9,15 @@ class Import extends Model
 {
     use HasFactory;
     
-    protected $table = 'orders';
+    protected $table = 'imports';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'supplier_id',
+        'user_id',
+        'total_amount',
+        'status',
         'import_date',
     ];
 
@@ -23,7 +26,7 @@ class Import extends Model
         return $this->belongsTo(Supplier::class);
     }
 
-    public function importDetails()
+    public function details()
     {
         return $this->hasMany(ImportDetail::class);
     }

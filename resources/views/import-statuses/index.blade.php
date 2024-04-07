@@ -1,13 +1,13 @@
 @extends('layouts.layout')
 
-@section('title', 'Danh sách Danh mục sản phẩm')
+@section('title', 'Danh sách Danh mục')
 
 @section('content')
 <div class="flex justify-center">
     <div class="w-full">
         <div class="bg-white rounded-lg shadow-lg">
             <div class="px-4 py-3 border-b border-gray-200">
-                <h2 class="text-lg font-semibold text-gray-800">Danh sách Danh mục sản phẩm</h2>
+                <h2 class="text-lg font-semibold text-gray-800">Danh sách Danh mục</h2>
             </div>
             <div class="p-4">
                 <div class="mb-4">

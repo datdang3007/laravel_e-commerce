@@ -9,7 +9,7 @@ class Supplier extends Model
 {
     use HasFactory;
     
-    protected $table = 'orders';
+    protected $table = 'suppliers';
 
     protected $primaryKey = 'id';
     

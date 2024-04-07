@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Thêm liên kết đến tệp CSS của Tailwind CSS -->
+    <!-- Thêm CDN Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Thêm CDN Font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <title>@yield('title')</title>
 </head>
 
@@ -28,6 +30,7 @@
         </div>
     </div>
 </body>
-    <!-- Include Jquery -->
+    <!-- Thêm CDN Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    @yield('scripts')
 </html>
