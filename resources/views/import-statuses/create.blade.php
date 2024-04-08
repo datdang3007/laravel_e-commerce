@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_admin')
 
 @section('title', 'Tạo Danh mục sản phẩm mới')
 

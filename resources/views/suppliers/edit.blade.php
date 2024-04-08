@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_admin')
 
 @section('title', 'Chỉnh Sửa Nhà Cung Cấp')
 
