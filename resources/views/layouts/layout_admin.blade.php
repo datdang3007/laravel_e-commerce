@@ -14,12 +14,12 @@
     <div class="flex">
         <!-- Left Sidebar -->
         @if(isset($sidebarMenu))
-            @include('components.sidebar-menu', ['menuItems' => $sidebarMenu])
+            @include('components.sidebar_menu', ['menuItems' => $sidebarMenu])
         @endif
 
         <div class="flex flex-col w-10/12 h-screen">
             <!-- Header Partial -->
-            @include('partials.header')
+            @include('partials.admin_header')
 
             <!-- Main Content -->
             <div class="flex-1 overflow-y-auto">

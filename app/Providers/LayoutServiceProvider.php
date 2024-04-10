@@ -10,7 +10,7 @@ class LayoutServiceProvider extends ServiceProvider
     public function boot()
     {
         // Sử dụng view composer để truyền dữ liệu vào layout
-        View::composer('layouts.layout', function ($view) {
+        View::composer('layouts.layout_admin', function ($view) {
             $sidebarMenu = [
                 [
                     'name' => 'Quản lý Nhà sản xuất',

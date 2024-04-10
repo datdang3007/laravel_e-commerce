@@ -10,7 +10,7 @@
                 <h2 class="text-lg font-semibold text-gray-800">Tạo Sản Phẩm mới</h2>
             </div>
             <div class="p-4">
-                <form action="{{ route('products.store') }}" method="POST">
+                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Tên</label>
@@ -80,6 +80,13 @@
                         <label for="production_location" class="block text-gray-700 text-sm font-bold mb-2">Nơi sản xuất</label>
                         <input type="text" name="production_location" id="production_location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         @error('production_location')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Hình ảnh</label>
+                        <input type="file" name="image" id="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        @error('image')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>

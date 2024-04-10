@@ -27,16 +27,29 @@ class ProductController extends Controller
         // Validate dữ liệu đầu vào từ form
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
             'unit' => 'required',
+            'description' => 'required',
             'price' => 'required|numeric',
             'stock_quantity' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'manufacturer_id' => 'required|exists:manufacturers,id',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Chỉ cho phép các định dạng hình ảnh và dung lượng tối đa là 2MB
         ]);
 
-        // Tạo sản phẩm mới trong cơ sở dữ liệu
-        Product::create($request->all());
+        // Kiểm tra xem người dùng đã tải lên hình ảnh hay không
+        if ($request->hasFile('image')) {
+            // Lưu trữ hình ảnh mới vào thư mục lưu trữ
+            $imagePath = $request->file('image')->store('public/images');
+
+            // Lấy tên tệp hình ảnh
+            $imageName = basename($imagePath);
+
+            // Tạo sản phẩm mới trong cơ sở dữ liệu với thông tin từ dữ liệu form và tên hình ảnh
+            Product::create(array_merge($request->except('image'), ['image' => $imageName]));
+        } else {
+            // Trường hợp người dùng không tải lên hình ảnh, tạo sản phẩm mới chỉ với thông tin từ dữ liệu form
+            Product::create($request->all());
+        }
 
         // Chuyển hướng về trang danh sách sản phẩm sau khi tạo mới thành công
         return redirect()->route('products.index')->with('success', 'Sản phẩm đã được tạo mới thành công.');
@@ -61,19 +74,42 @@ class ProductController extends Controller
         // Validate dữ liệu đầu vào từ form
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
             'unit' => 'required',
+            'description' => 'required',
             'price' => 'required|numeric',
             'stock_quantity' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'manufacturer_id' => 'required|exists:manufacturers,id',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Chỉ cho phép các định dạng hình ảnh và dung lượng tối đa là 2MB
         ]);
 
-        // Cập nhật thông tin sản phẩm trong cơ sở dữ liệu
-        Product::findOrFail($id)->update($request->all());
+        // Lấy thông tin sản phẩm cần cập nhật từ cơ sở dữ liệu
+        $product = Product::findOrFail($id);
+
+        // Cập nhật thông tin sản phẩm từ dữ liệu form
+        $product->update($request->except('image')); // Loại bỏ trường image khỏi dữ liệu cập nhật
+
+
+        // Kiểm tra xem người dùng đã tải lên hình ảnh mới hay không
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            if ($file->isValid()) {
+                // Lưu trữ hình ảnh mới vào thư mục lưu trữ
+                $imagePath = $file->store('public/images');
+        
+                // Lấy tên tệp hình ảnh
+                $imageName = basename($imagePath);
+        
+                // Cập nhật tên hình ảnh vào cơ sở dữ liệu
+                $product->update(['image' => $imageName]);
+            } else {
+                // Xử lý trường hợp file không hợp lệ
+                return redirect()->back()->with('error', 'Hình ảnh không hợp lệ.');
+            }
+        }
 
         // Chuyển hướng về trang chi tiết sản phẩm sau khi cập nhật thành công
-        return redirect()->route('products.show', $id)->with('success', 'Thông tin sản phẩm đã được cập nhật thành công.');
+        return redirect()->route('products.index')->with('success', 'Thông tin sản phẩm đã được cập nhật thành công.');
     }
 
     public function destroy($id)
