@@ -11,10 +11,10 @@ INSERT INTO manufacturers (name, address, website, created_at, updated_at) VALUE
 ('Hảo Hảo', 'Địa chỉ của Hảo Hảo', 'http://www.haohao.com', NOW(), NOW());
 
 -- Thêm dữ liệu vào bảng 'products'
-INSERT INTO products (name, description, unit, price, stock_quantity, category_id, manufacturer_id, production_date, production_location, size, created_at, updated_at) VALUES
-('Sữa tươi', 'Sữa tươi từ bò sữa tươi', 'Lít', 15000, 100, 1, 1, '2023-01-01 00:00:00', 'Nhà máy A', '1 Lít', NOW(), NOW()),
-('Mì gói', 'Mì gói ăn liền', 'Gói', 1990, 200, 2, 3, '2023-02-01 00:00:00', 'Nhà máy B', '100 gram', NOW(), NOW()),
-('Trà xanh', 'Bao trà xanh', 'Hộp', 5990, 150, 3, 2, '2023-03-01 00:00:00', 'Nhà máy C', '50 gram', NOW(), NOW());
+INSERT INTO products (name, description, unit, price, stock_quantity, category_id, manufacturer_id, production_date, production_location, size, image, created_at, updated_at) VALUES
+('Sữa tươi', 'Sữa tươi từ bò sữa tươi', 'Lít', 15000, 100, 1, 1, '2023-01-01 00:00:00', 'Nhà máy A', '1 Lít', 'IFXnP8RjO6oppwTBTum1ECPIvcOp1yKPMzAmtMIN.jpg', NOW(), NOW()),
+('Mì gói', 'Mì gói ăn liền', 'Gói', 1990, 200, 2, 3, '2023-02-01 00:00:00', 'Nhà máy B', '100 gram', 'zARDKWZFwpMEru4Oipc7AlomQ9mtRFRNQ7dnIqyN.webp', NOW(), NOW()),
+('Trà xanh', 'Bao trà xanh', 'Hộp', 5990, 150, 3, 2, '2023-03-01 00:00:00', 'Nhà máy C', '50 gram', '0ekj3OtcyriyKilzpV6xsB5j5gDJLoqpurnODG0F.jpg', NOW(), NOW());
 
 -- Thêm dữ liệu vào bảng 'order_statuses' (Đã thêm theo mã mẫu trong code PHP)
 -- Không cần thêm dữ liệu vì đã thêm sẵn trong mã mẫu
