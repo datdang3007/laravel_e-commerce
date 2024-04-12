@@ -12,22 +12,44 @@
             </div>
         </div>
         <div class="flex items-center">
-            <a href="#" class="mr-4 text-gray-800 hover:text-blue-600">Home</a>
-            <a href="#" class="mr-4 text-gray-800 hover:text-blue-600">Shop</a>
-            <a href="#" class="mr-4 text-gray-800 hover:text-blue-600">About</a>
-            <a href="#" class="mr-4 text-gray-800 hover:text-blue-600">Contact</a>
-            <a href="#" class="mr-4 text-gray-800 hover:text-blue-600">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+            <!-- <a href="#" class="mr-4 text-gray-800 hover:text-blue-600">Home</a>
+            <a href="#" class="mr-4 text-gray-800 hover:text-blue-600">Contact</a> -->
             <div class="relative">
-                <button href="#" class="text-gray-800 hover:text-blue-600 toggle-dropdown">
+                <button class="icon-cart mr-4 text-gray-800 hover:text-blue-600">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+
+                <!-- Dropdown Cart -->
+                <div class="absolute hidden dropdown-cart right-0 mt-2 bg-white rounded-md shadow-lg p-2" style="width: 500px">
+                    <ul class="text-gray-800"></ul>
+                    <button class="w-full mt-4 bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Đặt hàng</button>
+                </div>
+                <!-- End Dropdown Cart -->
+            </div>
+
+            <div class="relative">
+                <button class="text-gray-800 hover:text-blue-600 toggle-dropdown">
                     <i class="fas fa-user"></i>
                 </button>
+
                 <!-- Dropdown profile -->
                 <div class="absolute hidden dropdown-menu right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                    @if ($account)
+                        <div class="block px-4 py-2 text-sm text-gray-700"><p>Xin chào, {{ $account->name }}</p></div>
+                        <form action="{{ route('logout') }}" method="POST" style="display: none;" id="logout-form">
+                            @csrf
+                        </form>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Đăng xuất
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Đăng nhập
+                        </a>
+                        <a href="{{ route('register') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Đăng ký
+                        </a>
+                    @endif
                 </div>
                 <!-- End Dropdown profile -->
             </div>
@@ -36,10 +58,19 @@
 </div>
 
 @section('scripts')
+@parent
 <script>
     $(document).ready(function(){
+        console.log('icon-cart', $('.icon-cart'));
+
+
         $('.toggle-dropdown').click(function(){
             $('.dropdown-menu').toggleClass('hidden');
+        });
+
+
+        $('.icon-cart').click(function() {
+            $('.dropdown-cart').toggleClass('hidden');
         });
     });
 </script>

@@ -26,10 +26,10 @@ INSERT INTO suppliers (name, address, phone, email, created_at, updated_at) VALU
 ('Nhà cung cấp Hảo Hảo', 'Địa chỉ của Nhà cung cấp Hảo Hảo', '456789123', 'haohao@example.com', NOW(), NOW());
 
 -- Thêm dữ liệu vào bảng 'users' (tài khoản người dùng)
-INSERT INTO users (name, email, password, created_at, updated_at) VALUES
-('John Doe', 'john@example.com', 'password_hash', NOW(), NOW()),
-('Jane Smith', 'jane@example.com', 'password_hash', NOW(), NOW()),
-('James Brown', 'james@example.com', 'password_hash', NOW(), NOW());
+INSERT INTO users (name, email, password, role_id, created_at, updated_at) VALUES
+('John Doe', 'john@example.com', 'password_hash', 3, NOW(), NOW()),
+('Jane Smith', 'jane@example.com', 'password_hash', 3, NOW(), NOW()),
+('James Brown', 'james@example.com', 'password_hash', 3, NOW(), NOW());
 
 -- Thêm dữ liệu vào bảng 'import_statuses' (Đã thêm theo mã mẫu trong code PHP)
 -- Không cần thêm dữ liệu vì đã thêm sẵn trong mã mẫu

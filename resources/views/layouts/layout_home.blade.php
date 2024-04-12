@@ -21,15 +21,5 @@
 </body>
     <!-- Thêm CDN Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        // JavaScript to update price value
-        var slider = document.getElementById("priceRange");
-        var output = document.getElementById("priceValue");
-        output.innerHTML = "$" + slider.value;
-
-        slider.oninput = function() {
-            output.innerHTML = "$" + this.value;
-        }
-    </script>
     @yield('scripts')
 </html>

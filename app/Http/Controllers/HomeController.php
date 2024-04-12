@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -12,6 +13,7 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        return view('home.index', compact('categories', 'products'));
+        $account = Auth::user();
+        return view('home.index', compact('categories', 'products', 'account'));
     }
 }

@@ -8,12 +8,22 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\HomeController;
-
-/* ---------------------------------------- */
-/* -- Home 
-/* ---------------------------------------- */
+use App\Http\Controllers\AuthController;
 
 Route::get('/', [HomeController::class, 'index']);
+
+/* ---------------------------------------- */
+/* -- Auth 
+/* ---------------------------------------- */
+
+// ### Layout ###
+Route::get('/login', [AuthController::class, 'loginLayout'])->name('auth.login');
+Route::get('/register', [AuthController::class, 'registerLayout'])->name('auth.register');
+
+// ### API ###
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /* ---------------------------------------- */
 /* -- Suppliers 
