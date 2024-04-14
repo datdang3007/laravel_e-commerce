@@ -7,6 +7,8 @@ use App\Models\Import;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\ImportStatus;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ImportDetail;
 
 class ImportController extends Controller
 {
@@ -25,34 +27,61 @@ class ImportController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Validate request data
-        $request->validate([
-            'supplier_id' => 'required|exists:suppliers,id',
-            'import_status_id' => 'required|exists:import_statuses,id',
-            'details.*.product_id' => 'required|exists:products,id',
-            'details.*.quantity' => 'required|integer|min:1',
-            'details.*.unit_price' => 'required|numeric|min:0',
-        ]);
-
-        // Create import
-        $import = Import::create([
-            'supplier_id' => $request->supplier_id,
-            'import_status_id' => $request->import_status_id,
-        ]);
-
-        // Create import details
-        foreach ($request->details as $detail) {
-            ImportDetail::create([
-                'import_id' => $import->id,
-                'product_id' => $detail['product_id'],
-                'quantity' => $detail['quantity'],
-                'unit_price' => $detail['unit_price'],
-            ]);
-        }
-
-        return redirect()->route('imports.index')->with('success', 'Import created successfully.');
+{
+    // Kiểm tra người dùng hiện tại có đăng nhập hay không
+    if (!Auth::check()) {
+        return redirect()->route('login')->with('error', 'You must be logged in to perform this action.');
     }
+
+    // Lấy id của người dùng hiện tại
+    $userId = Auth::id();
+
+    // Validate dữ liệu yêu cầu
+    $request->validate([
+        'supplier_id' => 'required|exists:suppliers,id',
+        'import_status_id' => 'required|exists:import_statuses,id',
+        'product_id.*' => 'required|exists:products,id',
+        'quantity.*' => 'required|integer|min:1',
+        'unit_price.*' => 'required|numeric|min:0',
+    ]);
+
+    // Xây dựng mảng details từ các mảng product_id, quantity và unit_price
+    $details = [];
+    $totalAmount = 0; // Khởi tạo total amount
+    foreach ($request->product_id as $index => $productId) {
+        if ($request->quantity[$index] !== null && $request->unit_price[$index] !== null) {
+            $quantity = $request->quantity[$index];
+            $unitPrice = $request->unit_price[$index];
+            $details[] = [
+                'product_id' => $productId,
+                'quantity' => $quantity,
+                'unit_price' => $unitPrice,
+            ];
+            $totalAmount += $quantity * $unitPrice; // Tính toán total amount
+        }
+    }
+
+    // Tạo bản ghi import mới và lưu total amount
+    $import = Import::create([
+        'user_id' => $userId,
+        'supplier_id' => $request->supplier_id,
+        'import_status_id' => $request->import_status_id,
+        'total_amount' => $totalAmount, // Lưu total amount vào cột total_amount
+    ]);
+
+    // Tạo các chi tiết của import
+    foreach ($details as $detail) {
+        ImportDetail::create([
+            'import_id' => $import->id,
+            'product_id' => $detail['product_id'],
+            'quantity' => $detail['quantity'],
+            'unit_price' => $detail['unit_price'],
+        ]);
+    }
+
+    // Chuyển hướng với thông báo thành công
+    return redirect()->route('imports.index')->with('success', 'Import created successfully.');
+}
 
 
     public function show($id)
